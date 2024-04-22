@@ -17,9 +17,10 @@ def pdf_to_docx(pdf, docx):
 def translating(sequense):
     translator = Translator(to_lang='fa')
     for i in sequense:
-        translation = translator.translate(i)
-        trans_list.append(translation)
-        print(translation)
+        if i != '.':
+            translation = translator.translate(i)
+            trans_list.append(translation)
+            print(translation)
 
 
 def spacer(wordname, newname):
@@ -40,7 +41,7 @@ def spacer(wordname, newname):
 
 def word_trans(wordname, new_word):
     document = Document(wordname)
-    new_document = Document(new_word)
+    new_document = Document()
     for para in document.paragraphs:
         for i in para.text:
             lst_char.append(i)
@@ -66,13 +67,13 @@ def word_trans(wordname, new_word):
 
 print("select option:\n\t1)pdf translator\n\t2)word translator\n\t3)pdf to word\n\t4)Create distance\n\t5)Exit")
 while True:
-    print("!@#$%^&*" * 20)
+    print("!@#$%^&*" * 50)
     select = input("enter number: ")
     if select == '1':
         print("Enter the names of the files with their extension.")
         pdf_name = input("pdf name: ")
         word_name = input("word name: ")
-        word = 'sample.word'
+        word = 'sample.docx'
         pdf_to_docx(pdf_name, word)
         print("pdf has been successfully converted to word!")
         word_trans(word, word_name)
